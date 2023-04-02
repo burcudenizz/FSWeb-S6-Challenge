@@ -62,10 +62,22 @@ Gerekli şeyleri bitirdikten sonra çalışmanızı daha da ileri götürebilirs
 - [ ] Stil bileşenleri ile effektler veya animasyonlar oluşturun.
 - [ ] Bir dizi promise'ini çözmek için Promise.all'ı kullanın.
 
-
 ## Esnek Mülakat Soruları
 
 1. React JS nedir ve hangi sorunları çözer? Yanıtınızı sınıfta tanıtılan kavramlarla ve web'deki kişisel araştırmanızla destekleyin.
 1. Bileşen statelerini tanımlayın.
 1. Propları açıklayın.
 1. Side effektler nelerdir ve bir React bileşenindeki efektleri belirli state veya prop değişiklikleriyle nasıl senkronize edersiniz?
+
+Yanıtlar:
+
+1. React.js web uygulamaları için hızlı ve interaktif bir ui(kullanıcı arayüzü) oluşturmaya sağlayan bir JavaScript kütüphanesidir. Component(bileşen) tabanlı bir yaklaşım izler ve her bileşen kendi içindeki durumu yönetebilir. Böylece modüler bir uygulama tasarlanmasını sağlar.
+   React virtual DOM oluşturur, böylece webteki değişiklikler direkt DOM'a uygulanmaz, sadece yapılan değişiklikler güncellenir. Bu da uygulama performansını arttırır.
+
+2. React state bir componentin dinamik verilerini depolayan ve bileşenin davranışlarını belirleyen bir JS nesnesidir. State dinamiktir ve componentin etkişelimli olmasını sağlar.
+   3.Props’lar , bir componentten başka bir componente veri aktarımı yapmamızı sağlar.
+   Props’lar salt okunur (read-only) dir. Değiştirilemezler. Bu veri aktarımı; ana componentten alt componentlere geçerken alt componentler tarafından herhangi bir değişime uğramaz.
+3. API kullanımlarınıda ve DOM'un manuel olarak değiştirilmesi gibi işlemlere side effects denir. Çünkü bu tarz yan etkiye sahip işlemler rendering sırasında tamamlanmayabilir veya diğer bileşenlere etki etmesi gerekiyor olabilir.
+   React bileşenlerinde side effect'leri yönetmek için useEffect() hooku kullanılır. Bu hookun componentte bir değişiklik olduğunda dış dünyadaki işlemleri senkronize eder.
+   useEffect() hooku, iki parametre alır:
+   birinci parametre, side effect işlevi ve ikinci parametre ise side effect'in senkronize edileceği durumlar ve/veya props'lar dizisidir.
