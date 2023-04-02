@@ -13,3 +13,13 @@
 ul {
   list-style-type: none;
 }
+p {
+  color: #ffffff;
+  text-shadow: 1px 1px 5px #000000;
+  margin: 10px;
+}
+button:hover {
+  background: #004c8a;
+  color: #fdfdfd;
+  font-size: 20px;
+}

@@ -2,12 +2,6 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionItem,
-  AccordionBody,
-} from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import Filmler from "./Filmler.js";
@@ -32,7 +26,7 @@ const KarakterBilgileri = styled.div`
 
 export default function Karakter(props) {
   const [karakterler, setKarakterler] = useState();
-  const [open, setOpen] = useState("");
+  const [selectedKarakter, setSelectedKarakter] = useState(null);
 
   useEffect(() => {
     axios
@@ -46,35 +40,31 @@ export default function Karakter(props) {
       });
   }, []);
 
-  const toggle = (id) => {
-    if (open === id) {
-      setOpen();
-    } else {
-      setOpen(id);
-    }
-  };
+  function handleAccordionClick(karakter) {
+    setSelectedKarakter(selectedKarakter === karakter ? null : karakter);
+  }
 
   return (
     <ContainerKarakterler>
       {karakterler ? (
         karakterler.map((karakter) => (
           <KarakterBilgileri>
-            <Accordion open={open} toggle={toggle}>
-              <AccordionItem>
-                <AccordionHeader targetId="1">{karakter.name}</AccordionHeader>
-                <AccordionBody accordionId="1">
-                  <p>height : {karakter.height}</p>
-                  <p>mass : {karakter.mass}</p>
-                  <p>hair_color : {karakter.hair_color}</p>
-                  <p>skin_color :{karakter.skin_color}</p>
-                  <p>eye_color :{karakter.eye_color}</p>
-                  <p>birth_year :{karakter.birth_year}</p>
-                  <p>gender :{karakter.gender}</p>
-                  <p>homeworld :{karakter.homeworld}</p>
-                  <Filmler filmler={karakter.films} />
-                </AccordionBody>
-              </AccordionItem>
-            </Accordion>
+            <button onClick={() => handleAccordionClick(karakter)}>
+              {karakter.name}
+            </button>
+            {selectedKarakter === karakter && (
+              <div>
+                <p>height : {karakter.height}</p>
+                <p>mass : {karakter.mass}</p>
+                <p>hair_color : {karakter.hair_color}</p>
+                <p>skin_color :{karakter.skin_color}</p>
+                <p>eye_color :{karakter.eye_color}</p>
+                <p>birth_year :{karakter.birth_year}</p>
+                <p>gender :{karakter.gender}</p>
+                <p>homeworld :{karakter.homeworld}</p>
+                <Filmler filmler={karakter.films} />
+              </div>
+            )}
           </KarakterBilgileri>
         ))
       ) : (
